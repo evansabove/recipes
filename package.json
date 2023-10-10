@@ -6,6 +6,7 @@
     "build": "nuxt build",
     "dev": "nuxt dev --dotenv .env.development",
     "generate": "nuxt generate",
+    "generate-static-site": "npx nuxi generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "sb-sync": "storyblok pull-components --space=256242 && npm run generate-sb-types",
@@ -20,6 +21,7 @@
     "vue-router": "^4.2.5"
   },
   "dependencies": {
+    "@nuxtjs/tailwindcss": "^6.8.0",
     "@pinia/nuxt": "^0.4.11",
     "@vueuse/core": "^10.5.0",
     "axios": "^1.5.1",
