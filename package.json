@@ -4,16 +4,25 @@
   "type": "module",
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev",
+    "dev": "nuxt dev --dotenv .env.development",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "sb-sync": "storyblok pull-components --space=256242 && npm run generate-sb-types",
+    "generate-sb-types": "storyblok-generate-ts source=./components.256242.json target=./types/component-types-sb"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
     "@storyblok/nuxt": "^5.7.3",
     "nuxt": "^3.7.4",
+    "storyblok-generate-ts": "^1.15.1",
     "vue": "^3.3.4",
     "vue-router": "^4.2.5"
+  },
+  "dependencies": {
+    "@pinia/nuxt": "^0.4.11",
+    "@vueuse/core": "^10.5.0",
+    "axios": "^1.5.1",
+    "pinia": "^2.1.6"
   }
 }
