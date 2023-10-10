@@ -8,12 +8,34 @@ export interface PageStoryblok {
   [k: string]: any;
 }
 
+export interface RichtextStoryblok {
+  type: string;
+  content?: RichtextStoryblok[];
+  marks?: RichtextStoryblok[];
+  attrs?: any;
+  text?: string;
+  [k: string]: any;
+}
+
+export interface AssetStoryblok {
+  alt?: string;
+  copyright?: string;
+  id: number;
+  filename: string;
+  name: string;
+  title?: string;
+  focus?: string;
+  [k: string]: any;
+}
+
 export interface RecipeStoryblok {
-  conclusion?: string;
   title?: string;
   description?: string;
-  ingredients?: string;
-  method?: string;
+  ingredients?: RichtextStoryblok;
+  method?: RichtextStoryblok;
+  conclusion?: string;
+  image?: AssetStoryblok;
+  toptips?: RichtextStoryblok;
   _uid: string;
   component: "Recipe";
   [k: string]: any;

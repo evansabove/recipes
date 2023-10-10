@@ -14,6 +14,7 @@ const { $config } = useNuxtApp();
 const story = ref<StoryblokTypes.Story<StoryblokTypes.Content> | null>(null);
 
 story.value = await content.loadStory(route.fullPath);
+// await content.loadStories()
 
 if (!story.value) {
     router.push("/404");
