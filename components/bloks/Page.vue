@@ -20,10 +20,6 @@ const content = useContentStore();
 </script>
 
 <template>
-  <div style="display: none">
-    <a v-for="story in content.stories" :key="story.id" :href="`/${story.full_slug}`"></a>
-  </div>
-  
   <UContainer>
     <div class="flex flex-col flex-stretch">
       <div class="site-header">

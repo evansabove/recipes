@@ -14,22 +14,6 @@ export const useContentStore = defineStore({
         stories: {},
     }),
     actions: {
-        async loadStories<T>(): Promise<void> {
-            const storyblokKey = useNuxtApp().$config.public.storyblok.accessToken
-            const cv = new Date().getTime();
-
-            const apiPath = `https://api.storyblok.com/v1/cdn/stories?token=${storyblokKey}&cv=${cv}&version=${version}&resolve_links&resolve_relations=author`;
-
-            const data: Array<StoryblokTypes.Story<T>> | null = await axios
-                .get<Array<StoryblokTypes.Story<T>>>(apiPath)
-                .then((res) => {
-                    return res?.data ?? null;
-                })
-                .catch((err) => {
-                    console.log("Error getting Stories", err);
-                    return null;
-                });
-        },
         async loadStory<T>(
             routePath: string,
             force = false
