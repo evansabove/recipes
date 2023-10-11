@@ -27,6 +27,7 @@ jobs:
         run: |
           touch .env
           echo -e "STORYBLOK_KEY=${{ secrets.STORYBLOK_KEY }}\n" >> .env
+          echo -e "NUXT_PUBLIC_SITE_URL=${{ secrets.PUBLIC_SITE_URL }}\n" >> .env
       - name: Install
         run: npm install
       - name: Build

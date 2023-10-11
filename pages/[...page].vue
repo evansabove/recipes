@@ -10,7 +10,6 @@ const router = useRouter();
 const content = useContentStore();
 const { $config } = useNuxtApp();
 
-
 const story = ref<StoryblokTypes.Story<StoryblokTypes.Content> | null>(null);
 
 story.value = await content.loadStory(route.fullPath);
@@ -19,6 +18,10 @@ story.value = await content.loadStory(route.fullPath);
 if (!story.value) {
     router.push("/404");
 }
+
+useHead({
+  title: story.value?.name ? `${story.value?.name} - Andy's Recipes` : "Andy's Recipes",
+})
 
 </script>
 

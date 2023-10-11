@@ -27,7 +27,9 @@ export default defineNuxtConfig({
       },
     ],
     '@pinia/nuxt',
-    '@nuxt/ui'
+    '@nuxt/ui',
+    '@nuxtjs/robots',
+    'nuxt-simple-sitemap'
   ],
   devServer: {
     https: {
@@ -42,5 +44,10 @@ export default defineNuxtConfig({
 
       nitroConfig.prerender?.routes?.push(...slugs)
     }
+  },
+  sitemap: {
+    exclude: [
+      '/404',
+    ]
   }
 })
