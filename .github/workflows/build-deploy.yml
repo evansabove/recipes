@@ -1,0 +1,63 @@
+name: My Recipes
+
+on:
+  workflow_dispatch:
+  release:
+    types: [created]
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, reopened, synchronize]
+    branches:
+      - main
+
+env:
+  APP_ARTIFACT_LOCATION: ".output/public"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Build
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
+      - name: Create .env file
+        run: |
+          touch .env
+          echo -e "STORYBLOK_KEY=${{ secrets.STORYBLOK_KEY }}\n" >> .env
+      - name: Install
+        run: npm install
+      - name: Build
+        run: npm run generate
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        if: github.event_name != 'pull_request'
+        with:
+          name: output
+          path: ${{ env.APP_ARTIFACT_LOCATION }}
+
+  deploy:
+    runs-on: ubuntu-latest
+    name: Deploy to Production
+    needs: build_and_test
+    environment: 'Production'
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: output
+          path: ${{ env.APP_ARTIFACT_LOCATION }}
+      - name: Deploy to Production
+        if: github.ref == 'refs/heads/main'
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.WEB_APP_TOKEN }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          action: 'upload'
+          app_location: ${{ env.APP_ARTIFACT_LOCATION }}
+          skip_app_build: true
+          output_location: ''
+          app_artifact_location: ${{ env.APP_ARTIFACT_LOCATION }}
+          deployment_environment: 'Production'
