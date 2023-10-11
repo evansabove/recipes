@@ -36,6 +36,7 @@ export interface RecipeStoryblok {
   conclusion?: string;
   image?: AssetStoryblok;
   toptips?: RichtextStoryblok;
+  seo_description?: string;
   _uid: string;
   component: "Recipe";
   [k: string]: any;

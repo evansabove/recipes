@@ -13,6 +13,11 @@ const props = defineProps({
 const ingredients = computed(() => renderRichText(props.blok.ingredients));
 const method = computed(() => renderRichText(props.blok.method));
 const toptips = computed(() => renderRichText(props.blok.toptips));
+
+useSeoMeta({
+  description: props.blok.seo_description
+})
+
 </script>
 
 <template>

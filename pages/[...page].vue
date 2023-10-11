@@ -19,8 +19,14 @@ if (!story.value) {
     router.push("/404");
 }
 
+const pageTitle = story.value?.name ? `${story.value?.name} - Andy's Recipes` : "Andy's Recipes";
+
 useHead({
-  title: story.value?.name ? `${story.value?.name} - Andy's Recipes` : "Andy's Recipes",
+  title: pageTitle
+})
+
+useSeoMeta({
+  title: pageTitle
 })
 
 </script>
