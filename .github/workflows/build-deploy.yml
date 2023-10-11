@@ -41,7 +41,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     name: Deploy to Production
-    needs: build_and_test
+    needs: build
     environment: 'Production'
     steps:
       - name: Download artifact
