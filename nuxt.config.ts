@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const loadSlugsFromStoryblok = async () => {
-  const apiPath = `https://api.storyblok.com/v1/cdn/stories?token=${process.env.STORYBLOK_KEY}&cv=1&version=production&resolve_links&resolve_relations=author`;
+  const cv = new Date().getTime();
+  const apiPath = `https://api.storyblok.com/v1/cdn/stories?token=${process.env.STORYBLOK_KEY}&cv=${cv}&version=production&resolve_links&resolve_relations=author`;
 
   const data = await axios
     .get(apiPath)
