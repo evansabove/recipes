@@ -49,6 +49,10 @@ export default defineNuxtConfig({
   sitemap: {
     exclude: [
       '/404',
-    ]
+    ],
+    xsl: false
+  },
+  robots: {
+    configPath: 'robots.config',
   }
 })
