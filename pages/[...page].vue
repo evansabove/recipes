@@ -19,7 +19,9 @@ if (!story.value) {
     router.push("/404");
 }
 
-const pageTitle = story.value?.name ? `${story.value?.name} - Andy's Recipes` : "Andy's Recipes";
+const appConfig = useAppConfig()
+
+const pageTitle = story.value?.name ? `${story.value?.name} - ${appConfig.productName}` : appConfig.productName;
 
 useHead({
   title: pageTitle
