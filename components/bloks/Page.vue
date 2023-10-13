@@ -21,11 +21,13 @@ const currentYear = new Date().getFullYear();
 </script>
 
 <template>
+  <div class="site-header">
+    <UContainer>
+      <p class="mb-5">{{ appConfig.productName }}</p>
+    </UContainer>
+  </div>
   <UContainer>
     <div class="site-container">
-      <div class="site-header">
-        <p class="mb-5">{{ appConfig.productName }}</p>
-      </div>
       <div class="site-body">
         <article v-if="story.content?.body">
           <component
@@ -41,10 +43,15 @@ const currentYear = new Date().getFullYear();
       </div>
     </div>
   </UContainer>
-  <div class="site-footer">&copy; {{ appConfig.productName }} {{ currentYear }}</div>
+  <div class="site-footer">
+    &copy; {{ appConfig.productName }} {{ currentYear }}
+  </div>
 </template>
 
 <style lang="postcss">
+body {
+  background: #FFFCF9;
+}
 .site-container {
   display: flex;
   flex-direction: column;
@@ -54,18 +61,25 @@ const currentYear = new Date().getFullYear();
 }
 
 .site-header {
-  display: flex;
   font-size: 3rem;
+  background: #416165;
+  padding-top: 1rem;
+  padding-bottom: 4rem;
+  color: #FFFCF9;
 }
 
 .site-body {
   display: flex;
   @apply flex-1;
   margin-bottom: 3rem;
+  margin-top: -3.5rem;
 }
 
 .site-footer {
   text-align: center;
   font-size: 0.8rem;
+  background: #416165;
+  padding: 1rem;
+  color: #FFFCF9;
 }
 </style>
