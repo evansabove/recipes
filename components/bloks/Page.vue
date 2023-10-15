@@ -18,6 +18,9 @@ const props = defineProps({
 const content = useContentStore();
 const appConfig = useAppConfig();
 const currentYear = new Date().getFullYear();
+
+const colorMode = useColorMode()
+colorMode.preference = 'light'
 </script>
 
 <template>
