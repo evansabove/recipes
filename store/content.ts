@@ -43,5 +43,26 @@ export const useContentStore = defineStore({
             }
             return new Promise((resolve) => resolve(this.stories[routePath]));
         },
+        async loadRecipes<T>(): Promise<Array<StoryblokTypes.Story<T>> | null> {
+            const storyblokKey = useNuxtApp().$config.public.storyblok.accessToken
+            const cv = new Date().getTime();
+
+            const apiPath = `https://api.storyblok.com/v1/cdn/stories?token=${storyblokKey}&cv=${cv}&version=${version}&resolve_links&resolve_relations=author`;
+
+            const data: any | null = await axios
+                .get<any>(apiPath)
+                .then((res) => {
+                    return res?.data.stories ?? null;
+                })
+                .catch((err) => {
+                    console.log("Error getting Stories", err);
+                    return null;
+                });
+
+            const recipes = data.filter((story: any) => story.full_slug.includes('recipes/'))
+
+            return new Promise((resolve) => resolve(recipes));
+        },
     },
+
 });

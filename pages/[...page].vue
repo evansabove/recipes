@@ -41,10 +41,6 @@ useSeoMeta({
 </script>
 
 <template>
-  <Script>
-    <!-- Hotjar Tracking Code for https://www.cookwith.me.uk -->
-    
-  </Script>
   <client-only>
     <Storybridge v-model="story" />
   </client-only>

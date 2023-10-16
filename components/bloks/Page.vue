@@ -19,14 +19,16 @@ const content = useContentStore();
 const appConfig = useAppConfig();
 const currentYear = new Date().getFullYear();
 
-const colorMode = useColorMode()
-colorMode.preference = 'light'
+const colorMode = useColorMode();
+colorMode.preference = "light";
 </script>
 
 <template>
   <div class="site-header">
     <UContainer>
-      <p class="mb-5">{{ appConfig.productName }}</p>
+      <p class="page-title">
+        <a href="/">{{ appConfig.productName }}</a>
+      </p>
     </UContainer>
   </div>
   <UContainer>
@@ -53,7 +55,7 @@ colorMode.preference = 'light'
 
 <style lang="postcss">
 body {
-  background: #FFFCF9;
+  background: #fffcf9;
 }
 .site-container {
   display: flex;
@@ -68,7 +70,7 @@ body {
   background: #416165;
   padding-top: 1rem;
   padding-bottom: 4rem;
-  color: #FFFCF9;
+  color: #fffcf9;
 }
 
 .site-body {
@@ -83,6 +85,14 @@ body {
   font-size: 0.8rem;
   background: #416165;
   padding: 1rem;
-  color: #FFFCF9;
+  color: #fffcf9;
+}
+
+.page-title {
+  @apply mb-5;
+
+  a {
+    text-decoration: none;
+  }
 }
 </style>

@@ -41,3 +41,10 @@ export interface RecipeStoryblok {
   component: "Recipe";
   [k: string]: any;
 }
+
+export interface RecipeListStoryblok {
+  image?: AssetStoryblok;
+  _uid: string;
+  component: "RecipeList";
+  [k: string]: any;
+}
